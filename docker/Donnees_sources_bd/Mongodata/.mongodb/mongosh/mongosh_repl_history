@@ -1,0 +1,24 @@
+exit
+db.patients.find().pretty
+shows collections;
+shows collections
+use sante_db
+show dbs
+exit
+show dbs
+exit
+db.patients.find().pretty
+db.patients.countDocuments()   
+use sante_db
+exit
+db.patients.countDocuments()   
+db.patients.find().pretty()    # pour voir les données
+db.patients.countDocuments()   # doit retourner 3
+use sante_db
+mongosh
+db.patients.countDocuments()
+db.patients.find().pretty()
+show collections
+use sante_db
+show dbs
+exit

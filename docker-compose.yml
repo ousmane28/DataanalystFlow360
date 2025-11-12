@@ -1,0 +1,214 @@
+########################--------Bases de données------------#####################
+
+services:
+  mongodb:
+    image: mongo:6
+    container_name: mongo_collecte
+    ports:
+      - 27025:27017  
+    volumes:
+      - ./Donnees_sources_bd/Mongodata:/data/db  
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    restart: unless-stopped 
+    networks:
+      - hadoopnet
+
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    ports:
+      - "8088:8081"
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=admin
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+    networks:
+      - hadoopnet
+
+
+  postgres: 
+    image: postgres:13
+    container_name: postgres_collecte
+    ports:
+      - "5445:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: post_db_collect 
+    volumes:
+      - ./Donnees_sources_bd/Postgres:/var/lib/postgresql/data 
+    restart: unless-stopped 
+    networks:
+      - hadoopnet
+
+
+  mysql: 
+    image: mysql:latest 
+    container_name: mysql_collecte
+    environment:
+      MYSQL_DATABASE: mysql_db_collecte
+      MYSQL_PASSWORD: admin 
+      MYSQL_ROOT_PASSWORD: admin
+    ports:
+      - "3310:3306"
+    volumes:
+      - ./Donnees_sources_bd/mysql:/var/lib/mysql  
+    restart: unless-stopped
+    networks:
+      - hadoopnet
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode
+    hostname: namenode
+    ports:
+      - "9870:9870"   # UI HDFS
+      - "8020:8020"   # RPC
+    environment:
+      - CLUSTER_NAME=test
+    volumes:
+      - ./data_collection:/data
+      - ./hadoop_namenode1:/hadoop/dfs/name
+    networks:
+      - hadoopnet
+
+  datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode
+    hostname: datanode
+    ports:
+      - "9864:9864"
+    environment:
+      - CLUSTER_NAME=test
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:8020
+    volumes:
+      - ./hadoop_datanode1:/hadoop/dfs/data
+    depends_on:
+      - namenode
+    networks:
+      - hadoopnet
+
+  resourcemanager:
+    image: apache/hadoop:3
+    container_name: resourcemanager
+    hostname: resourcemanager
+    command: ["yarn", "resourcemanager"]
+    ports:
+      - 9088:8088
+    volumes:
+      - ./test.sh:/opt/test.sh
+
+  nodemanager:
+    image: apache/hadoop:3
+    container_name: nodemanager
+    command: ["yarn", "nodemanager"]
+  
+  spark-master:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spark-master
+    hostname: spark-master
+    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.master.Master", "--host", "spark-master"]
+    environment:
+      - SPARK_MASTER_PORT=7077
+      - SPARK_MASTER_WEBUI_PORT=8080
+    ports:
+      - "8080:8080"
+      - "7077:7077"
+    volumes:
+      - ./donnees_spark/app:/opt/spark/app
+      - ./donnees_spark/app/data:/data
+    networks:
+      - hadoopnet
+
+  spark-worker1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spark-worker
+    hostname: spark-worker
+    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.worker.Worker", "spark://spark-master:7077"]
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_WORKER_CORES=2
+      - SPARK_WORKER_MEMORY=2G
+      - SPARK_WORKER_PORT=8081
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./donnees_spark/app:/opt/spark/app
+      - ./donnees_spark/app/data:/data
+    networks:
+      - hadoopnet
+
+  spark-worker2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spark-worker2
+    hostname: spark-worker2
+    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.worker.Worker", "spark://spark-master:7077"]
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_WORKER_CORES=2
+      - SPARK_WORKER_MEMORY=2G
+      - SPARK_WORKER_PORT=8086
+    ports:
+      - "8086:8081"
+    volumes:
+      - ./donnees_spark/app:/opt/spark/app
+      - ./donnees_spark/app/data:/data
+    networks:
+      - hadoopnet
+
+  pyspark:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pyspark
+    hostname: pyspark
+    command: bash
+    stdin_open: true
+    tty: true
+    depends_on:
+      - spark-master
+    volumes:
+      - ./donnees_spark/app:/opt/spark/app
+      - ./donnees_spark/app/data:/data
+    networks:
+      - hadoopnet
+
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: jupyter
+    command: bash -c "jupyter lab --ip=0.0.0.0 --port=8888 --allow-root"
+    ports:
+      - "8888:8888"
+    environment:
+      - PYSPARK_PYTHON=python3
+      - JUPYTER_TOKEN=mariam@
+    volumes:
+        - ./donnees_spark/notebooks:/home/spark/notebooks
+        - ./donnees_spark/app/data:/data
+    networks:
+      - hadoopnet
+    depends_on:
+      - spark-master
+
+  
+networks:
+  hadoopnet:
+    driver: bridge
+
+
+###################----------- DataLake ---------######-----------#################

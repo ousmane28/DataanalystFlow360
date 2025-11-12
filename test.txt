@@ -1,0 +1,138 @@
+Script started on 2025-11-06 15:54:13+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="152" LINES="38"]
+[?2004h]0;mariam@mariam-HP-Laptop-14-ep0xxx: ~/Bureau/Orange_Digital_Center/Data_analyst_360[01;32mmariam@mariam-HP-Laptop-14-ep0xxx[00m:[01;34m~/Bureau/Orange_Digital_Center/Data_analyst_360[00m$ exit docker exec -it spark-master bashexit [Kdocker exec -it spark-master bash
+[?2004l[?2004hspark@spark-master:~$ pyspark
+[?2004lTraceback (most recent call last):
+  File "<string>", line 1, in <module>
+ImportError: cannot import name 'spark_connect_mode' from 'pyspark.util' (/opt/spark/python/pyspark/util.py)
+The environment variable SPARK_CONNECT_MODE has unknown value or pyspark.util package is not available: 
+Python 3.10.12 (main, Aug 15 2025, 14:32:43) [GCC 11.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+25/11/06 15:54:34 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 3.5.7
+      /_/
+
+Using Python version 3.10.12 (main, Aug 15 2025 14:32:43)
+Spark context Web UI available at http://spark-master:4040
+Spark context available as 'sc' (master = local[*], app id = local-1762444474904).
+SparkSession available as 'spark'.
+>>> spark.stop()
+>>> spark = SparkSession.builder \
+...     .appName("NettoyageDonneesSante") \
+...     .config("spark.hadoop.fs.defaultFS", "hdfs://namenode:8020") \
+...     .getOrCreate()
+>>> spark.version
+'3.5.7'
+>>> base_nosql = spark.read.option("header", "true").csv("hdfs://namenode:8020/data_collection/base_nosql.csv")
+>>> base_nosql.show()
++----+-------+---+----+-----------+------------+--------------------+-----------------+----------+
+| nom| prenom|age|sexe|      ville|     maladie|             hopital|date_consultation|   medecin|
++----+-------+---+----+-----------+------------+--------------------+-----------------+----------+
+|Diop|    Awa| 32|   F|      Dakar|     Diabète|   Hôpital Principal|       2025-10-10|Dr. Ndiaye|
+|Fall|Mamadou| 45|   M|      Thiès|Hypertension|Hôpital Régional ...|       2025-09-22|Dr. Diallo|
+| Sow|  Fatou| 28|   F|Saint-Louis|   Paludisme|Centre de Santé d...|       2025-10-02|    Dr. Sy|
+|Diop|    Awa| 32|   F|      Dakar|     Diabète|   Hôpital Principal|       2025-10-10|Dr. Ndiaye|
+|Fall|Mamadou| 45|   M|      Thiès|Hypertension|Hôpital Régional ...|       2025-09-22|Dr. Diallo|
+| Sow|  Fatou| 28|   F|Saint-Louis|   Paludisme|Centre de Santé d...|       2025-10-02|    Dr. Sy|
++----+-------+---+----+-----------+------------+--------------------+-----------------+----------+
+
+>>> base_sql = spark.read.option("header", "true").csv("hdfs://namenode:8020/data_collection/base_sql.csv")
+>>> donnee_sante = spark.read.option("header", "true").csv("hdfs://namenode:8020/data_collection/donnee_sante.csv")
+>>> donnees_sanitaires_api = spark.read.option("header", "true").csv("hdfs://namenode:8020/data_collection/donnees_sanitaires_api.csv")
+>>> 
+>>> base_sql.show()
++---+-----------------+---+----+---------------+-----------------+
+| id|              nom|age|sexe|        maladie|date_consultation|
++---+-----------------+---+----+---------------+-----------------+
+|  1|Catherine Michaud| 73|   F|         Asthme|       2024-10-28|
+|  2|  Richard Thierry| 84|   M|    Tuberculose|       2024-07-25|
+|  3|    Aurore Brunet| 26|   F|            VIH|       2024-09-10|
+|  4|   Tristan Renaud| 31|   F|         Asthme|       2025-11-02|
+|  5|     Marine Neveu| 38|   F|            VIH|       2025-04-29|
+|  6| Marthe Letellier| 60|   M|        Diabète|       2024-04-22|
+|  7|    Astrid Perret|  4|   F|Gastro-entérite|       2025-05-02|
+|  8|   Marcelle Costa| 40|   F|       Covid-19|       2024-03-20|
+|  9|   Nathalie David| 34|   F|        Choléra|       2024-08-27|
+| 10|    Victor Menard| 55|   M|    Tuberculose|       2025-05-09|
+| 11|  Édouard Vasseur| 61|   M|   Hypertension|       2024-01-01|
+| 12|       David Blot| 38|   F|         Grippe|       2025-01-04|
+| 13|  Michelle Martin| 24|   M|         Grippe|       2024-05-28|
+| 14|  Émilie Leclercq| 35|   M|Gastro-entérite|       2024-03-21|
+| 15|   Inès Rodrigues| 66|   M|         Anémie|       2024-03-10|
+| 16|  Monique Mathieu| 36|   F|    Tuberculose|       2025-01-02|
+| 17|  Odette Courtois| 21|   M|       Covid-19|       2025-03-01|
+| 18|  François Besson| 31|   F|Gastro-entérite|       2025-04-20|
+| 19| Adrienne Carlier| 32|   F|       Covid-19|       2025-07-13|
+| 20|   Gilles Bonneau| 37|   F|        Diabète|       2025-01-24|
++---+-----------------+---+----+---------------+-----------------+
+only showing top 20 rows
+
+>>> base_sql.show()donnee_sante.show()[1Pdonnee_sante.show()[C[C[C[C[C[C[C[C[C[C[C[1Pdonnee_sante.show()[C[C[C[C[C[C[C[C[C[C[1Pdonnee_sante.show()[C[C[C[C[C[C[C[C[C[1Pdonnee_sante.show()[C[C[C[C[C[C[C[C[1Pdonnee_sante.show()[C[C[C[C[C[C[C[1Pdonnee_sante.show()[C[C[C[C[C[C[1Pdonnee_sante.show()[C[C[C[C[C[1Pdonnee_sante.show()[C[C[C[C
++---+-----------+--------------------+----+---+------------+-----------------+-------------+-----------------+
+| id|     region|             hopital|sexe|age|     maladie|date_consultation|   traitement|cout_consultation|
++---+-----------+--------------------+----+---+------------+-----------------+-------------+-----------------+
+|  1| Ziguinchor|Hôpital Aristide ...|   M|  5|     Diabète|       2024-04-22|     Quinimax|            13727|
+|  2|      Dakar|   Hôpital Principal|   F| 12|Hypertension|       2024-08-28|     Quinimax|             2920|
+|  3|Tambacounda|Hôpital de Ziguin...|   M| 85|   Paludisme|       2024-01-08|  Paracétamol|             4863|
+|  4|      Dakar|Hôpital Aristide ...|   F| 27|   Paludisme|       2024-02-07|Antibiotiques|            17624|
+|  5|      Thiès|    Hôpital Régional|   M| 40| Tuberculose|       2024-08-21|Antibiotiques|             7540|
+|  6|      Dakar|Centre de Santé T...|   M| 21|Hypertension|       2024-02-04|     Quinimax|             9731|
+|  7|Tambacounda|Hôpital Aristide ...|   F| 38|      Grippe|       2024-01-17|     Quinimax|             9283|
+|  8| Ziguinchor|Hôpital Aristide ...|   F| 52|Hypertension|       2024-03-11|     Quinimax|             9410|
+|  9|    Kaolack|    Hôpital Régional|   F| 10|     Diabète|       2024-09-09|  Paracétamol|             3591|
+| 10|Tambacounda|    Hôpital de Thiès|   M| 23|   Paludisme|       2024-07-25|  Paracétamol|             3726|
+| 11| Ziguinchor|   Hôpital Principal|   M| 82|      Grippe|       2024-07-17|  Paracétamol|            10705|
+| 12|Saint-Louis|    Hôpital Régional|   M|  4|      Grippe|       2024-09-01|  Paracétamol|            15659|
+| 13|      Dakar|Hôpital de Ziguin...|   F|  5|Hypertension|       2024-08-01|  Paracétamol|             2404|
+| 14|      Dakar|    Hôpital de Thiès|   F| 33|      Grippe|       2024-01-22|        Repos|            16175|
+| 15|Saint-Louis|Hôpital de Ziguin...|   F| 78|    Covid-19|       2024-05-03|  Chloroquine|            13987|
+| 16|Tambacounda|    Hôpital de Thiès|   F| 33|Hypertension|       2024-09-24|     Quinimax|             6551|
+| 17| Ziguinchor|Hôpital Aristide ...|   M| 37|      Grippe|       2024-01-10|     Insuline|            14840|
+| 18|Tambacounda|Hôpital Aristide ...|   F| 20|     Diabète|       2024-08-23|  Paracétamol|            18505|
+| 19|Tambacounda|Hôpital de Ziguin...|   F| 76|      Grippe|       2024-07-22|Antibiotiques|            11113|
+| 20|Saint-Louis|Hôpital Aristide ...|   M| 54|      Grippe|       2024-07-17|Antibiotiques|            10391|
++---+-----------+--------------------+----+---+------------+-----------------+-------------+-----------------+
+only showing top 20 rows
+
+>>> donnees_sanitaires_api .sho[K[K[K[K[K.show()
++-------------+-------------------+--------------------+--------+----------+------+-----------+---------+--------------+-------+--------+------------------+-------------------+---------+------------------+----------+-----------------+----------------+-----------------+----------------+-------------------+----------------------+---------------------+
+|      updated|            country|         countryInfo|   cases|todayCases|deaths|todayDeaths|recovered|todayRecovered| active|critical|casesPerOneMillion|deathsPerOneMillion|    tests|testsPerOneMillion|population|        continent|oneCasePerPeople|oneDeathPerPeople|oneTestPerPeople|activePerOneMillion|recoveredPerOneMillion|criticalPerOneMillion|
++-------------+-------------------+--------------------+--------+----------+------+-----------+---------+--------------+-------+--------+------------------+-------------------+---------+------------------+----------+-----------------+----------------+-----------------+----------------+-------------------+----------------------+---------------------+
+|1762345498592|        Afghanistan|{'_id': 4, 'iso2'...|  234174|         0|  7996|          0|   211080|             0|  15098|       0|              5746|                196|  1390730|             34125|  40754388|             Asia|             174|             5097|              29|             370.46|               5179.32|                  0.0|
+|1762345498582|            Albania|{'_id': 8, 'iso2'...|  334863|         0|  3605|          0|   330233|             0|   1025|       0|            116825|               1258|  1941032|            677173|   2866374|           Europe|               9|              795|               1|             357.59|             115209.32|                  0.0|
+|1762345498586|            Algeria|{'_id': 12, 'iso2...|  272010|         0|  6881|          0|   183061|             0|  82068|       0|              5998|                152|   230960|              5093|  45350148|           Africa|             167|             6591|             196|            1809.65|               4036.61|                  0.0|
+|1762345498638|            Andorra|{'_id': 20, 'iso2...|   48015|         0|   165|          0|        0|             0|  47850|       0|            619844|               2130|   249838|           3225256|     77463|           Europe|               2|              469|               0|          617714.26|                   0.0|                  0.0|
+|1762345498615|             Angola|{'_id': 24, 'iso2...|  107327|         0|  1937|          0|   103419|             0|   1971|       0|              3064|                 55|  1499795|             42818|  35027343|           Africa|             326|            18083|              23|              56.27|               2952.52|                  0.0|
+|1762345498710|           Anguilla|{'_id': 660, 'iso...|    3904|         0|    12|          0|        0|             0|   3892|       0|            256336|                788|    51382|           3373736|     15230|    North America|               4|             1269|               0|          255548.26|                   0.0|                  0.0|
+|1762345498697|Antigua and Barbuda|{'_id': 28, 'iso2...|    9106|         0|   146|          0|     8954|             0|      6|       0|             91509|               1467|    18901|            189943|     99509|    North America|              11|              682|               5|               60.3|              89981.81|                  0.0|
+|1762345498476|          Argentina|{'_id': 32, 'iso2...|10128845|         0|130841|          0|  9997258|             0|    746|       0|            220143|               2844| 35716069|            776264|  46010234|    South America|               5|              352|               1|              16.21|             217283.35|                  0.0|
+|1762345498573|            Armenia|{'_id': 51, 'iso2...|  451831|         0|  8777|          0|   435162|             0|   7892|       0|            152031|               2953|  3242901|           1091164|   2971966|             Asia|               7|              339|               1|            2655.48|             146422.27|                  0.0|
+|1762345498641|              Aruba|{'_id': 533, 'iso...|   44224|         0|   292|          0|    42438|             0|   1494|       2|            410969|               2714|   177885|           1653068|    107609|    North America|               2|              369|               1|            13883.6|             394372.22|                18.59|
+|1762345498472|          Australia|{'_id': 36, 'iso2...|11853144|         0| 24414|          0| 11820014|             0|   8716|       3|            454687|                937| 81916639|           3142326|  26068792|Australia-Oceania|               2|             1068|               0|             334.35|             453416.25|                 0.12|
+|1762345498488|            Austria|{'_id': 40, 'iso2...| 6081287|         0| 22542|          0|  6054934|             0|   3811|       0|            670727|               2486|211273524|          23302116|   9066710|           Europe|               1|              402|               0|             420.33|             667820.41|                  0.0|
+|1762345498554|         Azerbaijan|{'_id': 31, 'iso2...|  835234|         0| 10400|          0|   824089|             0|    745|       0|             81089|               1010|  7748050|            752223|  10300205|             Asia|              12|              990|               1|              72.33|              80007.05|                  0.0|
+|1762345498647|            Bahamas|{'_id': 44, 'iso2...|   38084|         0|   844|          0|    36366|             0|    874|       1|             95087|               2107|   257839|            643767|    400516|    North America|              11|              475|               2|            2182.18|              90797.87|                  2.5|
+|1762345498555|            Bahrain|{'_id': 48, 'iso2...|  729549|         0|  1574|          0|   727915|             0|     60|       0|            408944|                882| 10948549|           6137138|   1783983|             Asia|               2|             1133|               0|              33.63|             408027.99|                  0.0|
+|1762345498521|         Bangladesh|{'_id': 50, 'iso2...| 2049377|         0| 29493|          0|        0|             0|2019884|       0|             12207|                176| 15254399|             90862| 167885689|             Asia|              82|             5692|              11|           12031.31|                   0.0|                  0.0|
+|1762345498614|           Barbados|{'_id': 52, 'iso2...|  110578|         0|   648|          0|   108647|             0|   1283|       0|            383921|               2250|   814159|           2826715|    288023|    North America|               3|              444|               0|            4454.51|              377216.4|                  0.0|
+|1762345498550|            Belarus|{'_id': 112, 'iso...|  994037|         0|  7118|          0|   985592|             0|   1327|       0|            105381|                755| 13646641|           1446722|   9432800|           Europe|               9|             1325|               1|             140.68|             104485.62|                  0.0|
+|1762345498497|            Belgium|{'_id': 56, 'iso2...| 4861695|         0| 34376|          0|  4826798|            50|    521|       0|            416659|               2946| 37454182|           3209915|  11668278|           Europe|               2|              339|               0|              44.65|             413668.41|                  0.0|
+|1762345498626|             Belize|{'_id': 84, 'iso2...|   71409|         0|   688|          0|        0|             0|  70721|       0|            173243|               1669|   576016|           1397453|    412190|    North America|               6|              599|               1|          171573.79|                   0.0|                  0.0|
++-------------+-------------------+--------------------+--------+----------+------+-----------+---------+--------------+-------+--------+------------------+-------------------+---------+------------------+----------+-----------------+----------------+-----------------+----------------+-------------------+----------------------+---------------------+
+only showing top 20 rows
+
+>>> exit()
+[?2004hspark@spark-master:~$ pwd
+[?2004l/home/spark
+[?2004hspark@spark-master:~$ ls 
+[?2004l[?2004hspark@spark-master:~$ cd [K[K[Kexit
+[?2004lexit
+[?2004h]0;mariam@mariam-HP-Laptop-14-ep0xxx: ~/Bureau/Orange_Digital_Center/Data_analyst_360[01;32mmariam@mariam-HP-Laptop-14-ep0xxx[00m:[01;34m~/Bureau/Orange_Digital_Center/Data_analyst_360[00m$ exit
+[?2004lexit
+
+Script done on 2025-11-06 15:58:46+00:00 [COMMAND_EXIT_CODE="0"]

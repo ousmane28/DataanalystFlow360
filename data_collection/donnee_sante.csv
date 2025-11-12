@@ -1,0 +1,101 @@
+id,region,hopital,sexe,age,maladie,date_consultation,traitement,cout_consultation
+1,Ziguinchor,Hôpital Aristide Le Dantec,M,5,Diabète,2024-04-22,Quinimax,13727
+2,Dakar,Hôpital Principal,F,12,Hypertension,2024-08-28,Quinimax,2920
+3,Tambacounda,Hôpital de Ziguinchor,M,85,Paludisme,2024-01-08,Paracétamol,4863
+4,Dakar,Hôpital Aristide Le Dantec,F,27,Paludisme,2024-02-07,Antibiotiques,17624
+5,Thiès,Hôpital Régional,M,40,Tuberculose,2024-08-21,Antibiotiques,7540
+6,Dakar,Centre de Santé Tambacounda,M,21,Hypertension,2024-02-04,Quinimax,9731
+7,Tambacounda,Hôpital Aristide Le Dantec,F,38,Grippe,2024-01-17,Quinimax,9283
+8,Ziguinchor,Hôpital Aristide Le Dantec,F,52,Hypertension,2024-03-11,Quinimax,9410
+9,Kaolack,Hôpital Régional,F,10,Diabète,2024-09-09,Paracétamol,3591
+10,Tambacounda,Hôpital de Thiès,M,23,Paludisme,2024-07-25,Paracétamol,3726
+11,Ziguinchor,Hôpital Principal,M,82,Grippe,2024-07-17,Paracétamol,10705
+12,Saint-Louis,Hôpital Régional,M,4,Grippe,2024-09-01,Paracétamol,15659
+13,Dakar,Hôpital de Ziguinchor,F,5,Hypertension,2024-08-01,Paracétamol,2404
+14,Dakar,Hôpital de Thiès,F,33,Grippe,2024-01-22,Repos,16175
+15,Saint-Louis,Hôpital de Ziguinchor,F,78,Covid-19,2024-05-03,Chloroquine,13987
+16,Tambacounda,Hôpital de Thiès,F,33,Hypertension,2024-09-24,Quinimax,6551
+17,Ziguinchor,Hôpital Aristide Le Dantec,M,37,Grippe,2024-01-10,Insuline,14840
+18,Tambacounda,Hôpital Aristide Le Dantec,F,20,Diabète,2024-08-23,Paracétamol,18505
+19,Tambacounda,Hôpital de Ziguinchor,F,76,Grippe,2024-07-22,Antibiotiques,11113
+20,Saint-Louis,Hôpital Aristide Le Dantec,M,54,Grippe,2024-07-17,Antibiotiques,10391
+21,Saint-Louis,Hôpital de Thiès,M,52,Paludisme,2024-06-14,Insuline,19482
+22,Kaolack,Hôpital Régional,M,30,Hypertension,2024-07-04,Quinimax,3894
+23,Dakar,Hôpital de Ziguinchor,M,46,Paludisme,2024-04-26,Paracétamol,9390
+24,Tambacounda,Hôpital de Ziguinchor,F,79,Covid-19,2024-05-23,Insuline,2261
+25,Tambacounda,Centre de Santé Tambacounda,M,84,Hypertension,2024-09-05,Antibiotiques,4971
+26,Saint-Louis,Hôpital Principal,F,81,Tuberculose,2024-10-25,Insuline,10364
+27,Tambacounda,Hôpital Principal,M,71,Grippe,2024-10-26,Chloroquine,17708
+28,Saint-Louis,Hôpital de Thiès,F,51,Covid-19,2024-10-21,Quinimax,12032
+29,Dakar,Hôpital de Thiès,M,17,Grippe,2024-06-20,Paracétamol,8454
+30,Ziguinchor,Hôpital de Ziguinchor,M,17,Diabète,2024-06-16,Insuline,17875
+31,Tambacounda,Hôpital de Thiès,M,73,Hypertension,2024-01-31,Repos,8180
+32,Dakar,Centre de Santé Tambacounda,F,1,Hypertension,2024-04-16,Repos,14507
+33,Tambacounda,Hôpital de Ziguinchor,M,19,Covid-19,2024-06-02,Repos,15887
+34,Saint-Louis,Hôpital de Thiès,F,2,Hypertension,2024-07-30,Insuline,5024
+35,Thiès,Hôpital Aristide Le Dantec,M,13,Tuberculose,2024-04-19,Quinimax,13598
+36,Thiès,Hôpital Aristide Le Dantec,F,76,Hypertension,2024-05-06,Quinimax,13511
+37,Thiès,Hôpital de Thiès,F,1,Tuberculose,2024-04-23,Repos,19404
+38,Thiès,Hôpital Aristide Le Dantec,F,50,Diabète,2024-10-11,Repos,15597
+39,Dakar,Hôpital Principal,M,48,Hypertension,2024-01-02,Quinimax,19356
+40,Kaolack,Hôpital Aristide Le Dantec,F,89,Grippe,2024-05-05,Paracétamol,3870
+41,Dakar,Hôpital de Ziguinchor,M,75,Grippe,2024-07-17,Paracétamol,7580
+42,Tambacounda,Hôpital Régional,M,85,Covid-19,2024-02-09,Antibiotiques,8976
+43,Dakar,Hôpital Aristide Le Dantec,M,67,Diabète,2024-09-22,Quinimax,18607
+44,Dakar,Centre de Santé Tambacounda,F,38,Tuberculose,2024-08-15,Paracétamol,9200
+45,Saint-Louis,Hôpital Principal,M,82,Grippe,2024-06-14,Quinimax,7736
+46,Ziguinchor,Centre de Santé Tambacounda,M,24,Covid-19,2024-01-27,Paracétamol,3273
+47,Dakar,Hôpital Principal,F,50,Tuberculose,2024-07-25,Repos,6527
+48,Tambacounda,Hôpital de Thiès,F,35,Grippe,2024-09-14,Chloroquine,11764
+49,Tambacounda,Hôpital de Ziguinchor,F,62,Tuberculose,2024-06-12,Chloroquine,16782
+50,Thiès,Hôpital Régional,F,54,Tuberculose,2024-08-22,Paracétamol,15735
+51,Tambacounda,Centre de Santé Tambacounda,M,20,Diabète,2024-01-14,Insuline,16713
+52,Ziguinchor,Hôpital de Thiès,M,38,Diabète,2024-03-18,Antibiotiques,13242
+53,Dakar,Hôpital Régional,M,43,Grippe,2024-03-19,Repos,16211
+54,Tambacounda,Hôpital Aristide Le Dantec,M,14,Tuberculose,2024-06-01,Chloroquine,6486
+55,Ziguinchor,Hôpital Aristide Le Dantec,F,26,Grippe,2024-03-18,Chloroquine,12170
+56,Dakar,Hôpital Régional,M,12,Hypertension,2024-08-21,Quinimax,7589
+57,Saint-Louis,Hôpital de Thiès,M,78,Hypertension,2024-06-27,Paracétamol,14617
+58,Thiès,Hôpital de Ziguinchor,M,58,Hypertension,2024-09-19,Quinimax,10209
+59,Dakar,Hôpital Principal,M,8,Tuberculose,2024-06-05,Antibiotiques,4484
+60,Thiès,Hôpital Régional,F,13,Paludisme,2024-03-04,Antibiotiques,2884
+61,Tambacounda,Hôpital de Thiès,M,57,Paludisme,2024-08-01,Quinimax,15082
+62,Ziguinchor,Hôpital Principal,M,15,Covid-19,2024-01-11,Antibiotiques,7767
+63,Kaolack,Hôpital Régional,M,51,Paludisme,2024-05-03,Paracétamol,13756
+64,Ziguinchor,Hôpital de Ziguinchor,M,52,Tuberculose,2024-09-02,Chloroquine,12366
+65,Saint-Louis,Centre de Santé Tambacounda,F,52,Hypertension,2024-08-31,Paracétamol,12844
+66,Kaolack,Hôpital Aristide Le Dantec,M,76,Covid-19,2024-01-06,Chloroquine,15055
+67,Saint-Louis,Hôpital de Ziguinchor,M,51,Diabète,2024-01-16,Paracétamol,10246
+68,Ziguinchor,Hôpital Aristide Le Dantec,M,51,Diabète,2024-09-28,Antibiotiques,2636
+69,Kaolack,Hôpital de Thiès,M,13,Covid-19,2024-04-13,Quinimax,16370
+70,Saint-Louis,Hôpital de Ziguinchor,F,3,Tuberculose,2024-04-27,Chloroquine,7590
+71,Thiès,Hôpital Aristide Le Dantec,M,28,Tuberculose,2024-04-16,Insuline,7690
+72,Saint-Louis,Centre de Santé Tambacounda,M,34,Paludisme,2024-09-30,Paracétamol,3558
+73,Thiès,Hôpital de Ziguinchor,M,66,Paludisme,2024-03-31,Antibiotiques,15269
+74,Saint-Louis,Hôpital Régional,F,7,Grippe,2024-04-26,Antibiotiques,11808
+75,Kaolack,Hôpital de Ziguinchor,F,36,Paludisme,2024-07-16,Quinimax,6561
+76,Ziguinchor,Hôpital Principal,F,1,Covid-19,2024-05-29,Antibiotiques,12650
+77,Kaolack,Centre de Santé Tambacounda,M,53,Grippe,2024-05-06,Antibiotiques,19533
+78,Dakar,Hôpital de Ziguinchor,F,67,Grippe,2024-08-01,Chloroquine,3349
+79,Dakar,Centre de Santé Tambacounda,M,33,Paludisme,2024-03-17,Paracétamol,7210
+80,Ziguinchor,Hôpital Régional,F,67,Covid-19,2024-03-10,Insuline,13028
+81,Thiès,Hôpital Aristide Le Dantec,F,28,Diabète,2024-05-24,Paracétamol,4577
+82,Dakar,Hôpital Principal,F,24,Diabète,2024-07-11,Insuline,2512
+83,Tambacounda,Centre de Santé Tambacounda,M,26,Grippe,2024-08-12,Quinimax,15098
+84,Kaolack,Hôpital Aristide Le Dantec,F,72,Covid-19,2024-04-02,Quinimax,11963
+85,Dakar,Hôpital de Thiès,F,35,Grippe,2024-03-25,Insuline,18838
+86,Dakar,Hôpital de Thiès,F,9,Diabète,2024-05-27,Insuline,7318
+87,Thiès,Hôpital de Thiès,F,3,Tuberculose,2024-02-11,Paracétamol,15112
+88,Ziguinchor,Hôpital de Ziguinchor,M,76,Grippe,2024-07-15,Antibiotiques,16986
+89,Saint-Louis,Hôpital de Ziguinchor,M,14,Paludisme,2024-05-18,Repos,17526
+90,Kaolack,Hôpital Régional,F,11,Covid-19,2024-09-10,Chloroquine,16685
+91,Kaolack,Hôpital de Ziguinchor,F,28,Tuberculose,2024-01-01,Paracétamol,17660
+92,Saint-Louis,Hôpital Principal,F,16,Grippe,2024-10-01,Paracétamol,12485
+93,Ziguinchor,Hôpital Régional,M,22,Diabète,2024-05-12,Paracétamol,4088
+94,Saint-Louis,Hôpital Principal,F,3,Grippe,2024-09-06,Insuline,11845
+95,Dakar,Centre de Santé Tambacounda,F,7,Paludisme,2024-04-22,Insuline,18397
+96,Tambacounda,Hôpital de Thiès,F,20,Grippe,2024-04-14,Paracétamol,6411
+97,Dakar,Hôpital Aristide Le Dantec,M,46,Diabète,2024-09-24,Repos,17703
+98,Thiès,Hôpital de Thiès,F,20,Tuberculose,2024-06-16,Paracétamol,16336
+99,Tambacounda,Hôpital Régional,M,20,Covid-19,2024-07-31,Insuline,8729
+100,Saint-Louis,Hôpital Principal,F,61,Paludisme,2024-02-05,Chloroquine,9237
