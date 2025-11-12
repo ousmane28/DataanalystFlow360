@@ -1,2 +1,19 @@
-#ghguuhuh
-*venv
+# Python
+venv/
+
+# Docker
+docker/
+
+# Ignorer tous les dossiers Hadoop
+hadoop_*/
+
+# Suivre le dossier Donnees_sources_bd mais ignorer les fichiers temporaires / DB
+!Donnees_sources_bd/
+
+# MongoDB : ignorer les fichiers de données et logs
+Donnees_sources_bd/Mongodata/WiredTiger*
+Donnees_sources_bd/Mongodata/journal/
+Donnees_sources_bd/Mongodata/diagnostic.data/
+
+# PostgreSQL : ignorer fichiers temporaires
+Donnees_sources_bd/Postgres/pg_stat_tmp/
